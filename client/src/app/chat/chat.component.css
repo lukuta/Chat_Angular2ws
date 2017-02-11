@@ -1,0 +1,144 @@
+#logo {
+  min-width: 300px;
+  max-width: 300px;
+  text-align: center;
+  display: block;
+  font-family: Laksaman;
+  font-size: 30px;
+  margin-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-bottom: solid rgba(0,0,0,0.5) thin;
+}
+
+#chat-box{
+  position: fixed;
+  margin-left: 300px;
+  padding: 1% 1% 3em;
+  border: #9a9eb9 solid thin;
+  width: 70%;
+  top: 0.5em;
+  bottom: 60px;
+  border-radius: 5px;
+  background-color: #e4e8ff;
+  overflow: auto;
+}
+
+#users-online{
+  position: fixed;
+  text-align: center;
+  min-width: 300px;
+  max-width: 300px;
+  top: 8em;
+  bottom: 60px;
+}
+
+#users-online div {
+  display: inline-block;
+  padding-top: 0.5em;
+  width: 75%;
+  height: 100%;
+  bottom: 60px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.6);
+}
+
+#users-online span {
+  padding: 0 2em;
+  margin-bottom: 2em;
+  border-bottom: solid #9a9eb9 1px;
+}
+
+#users-online ul {
+  margin-top: 1em;
+}
+
+#message-form {
+  position: fixed;
+  bottom: 20px;
+  width: 70%;
+}
+
+#message-form input {
+  width: 100%;
+  height: 2em;
+  margin-left: 300px;
+}
+
+#message-form button {
+  position: absolute;
+  display: none;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+.message {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 5px;
+  position: relative;
+  background-color: #d4d8ff;
+  border: #9a9eb9 solid thin;
+  border-radius: 5px;
+  line-height: 2em;
+  vertical-align: middle;
+  -webkit-box-shadow: 0 2px 1px 0 rgba(0,0,0,0.75);
+  -moz-box-shadow: 0 2px 1px 0 rgba(0,0,0,0.75);
+  box-shadow: 0 2px 1px 0 rgba(0,0,0,0.75);
+  font-family: cursive;
+}
+
+#login-box {
+  position:fixed;
+  padding:0;
+  margin:0;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: url("../../assets/bg-login.jpg") center no-repeat;
+  background-size: cover;
+}
+
+#login-box-content {
+  position: relative;
+  top: 50%;
+  left: 25%;
+  transform: translate(-25%,-50%);
+  display: inline-block;
+  background: rgba(255,255,255,0.6);
+  border-radius: 10px;
+  min-width: 40%;
+  min-height: 50%;
+}
+
+#login-box-content > span {
+  font-size: 40px;
+  font-family: Daniel;
+  line-height: 5em;
+  padding: 0 1em;
+}
+
+#login-box-content input, button {
+  line-height: 2em;
+  border-radius: 3px;
+  border: 1px darkgray solid;
+}
+
+#login-box-content input {
+  background: antiquewhite;
+}
+
+#error-box {
+  font-size: 20px;
+  color: darkred;
+  line-height: 200px;
+}
+
+footer {
+  position: fixed;
+  bottom: 20px;
+  left: 40px;
+}

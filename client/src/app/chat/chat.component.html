@@ -1,0 +1,43 @@
+<div id="logo">
+  {{ title }}
+</div>
+
+<div id="users-online">
+  <div>
+    <span>Who is online</span>
+    <ul>
+      <li *ngFor="let user of users">
+        {{ user }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div id="chat-box">
+  <ul id="messages">
+    <li class="message" *ngFor="let message of messages">
+      {{message.text}}
+    </li>
+  </ul>
+</div>
+<form action="" id="message-form">
+  <input id="send-input" placeholder="press enter to send" [(ngModel)]="message" name="message" />
+  <button (click)="sendMessage()">Send</button>
+</form>
+
+<footer>
+  Łukasz Kuta &copy; 2017
+</footer>
+
+<div id="login-box">
+  <div id="login-box-content">
+    <span>Welcome to ChatApp</span>
+    <form action="">
+      <input autofocus [(ngModel)]="username" name="username" placeholder="type your nickname"/>
+      <button (click)="registerUser()">Log me in!</button>
+    </form>
+    <div id="error-box">
+      Everything is fine :)
+    </div>
+  </div>
+</div>

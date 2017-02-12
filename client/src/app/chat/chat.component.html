@@ -13,10 +13,12 @@
   </div>
 </div>
 
+<button id="clear-button" (click)="clearMessages()">Clear</button>
+
 <div id="chat-box">
   <ul id="messages">
-    <li class="message" *ngFor="let message of messages">
-      {{message.text}}
+    <li *ngFor="let message of messages" [ngClass]="{'message': true, 'ownMessage': message.username == username}">
+      {{ putMessage(message) }}
     </li>
   </ul>
 </div>
@@ -33,11 +35,11 @@
   <div id="login-box-content">
     <span>Welcome to ChatApp</span>
     <form action="">
-      <input autofocus [(ngModel)]="username" name="username" placeholder="type your nickname"/>
+      <input autofocus [(ngModel)]="username" maxlength="12" name="username" placeholder="type your nickname"/>
       <button (click)="registerUser()">Log me in!</button>
     </form>
     <div id="error-box">
-      Everything is fine :)
+
     </div>
   </div>
 </div>

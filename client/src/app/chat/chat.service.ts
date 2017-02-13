@@ -8,8 +8,8 @@ export class ChatService {
   private socket;
   private io = require('socket.io-client');
 
-  sendMessage(message, username){
-    this.socket.emit('add-message', message, username);
+  sendMessage(message){
+    this.socket.emit('add-message', message);
   }
 
   sendUsername(username){

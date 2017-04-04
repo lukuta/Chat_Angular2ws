@@ -3,6 +3,10 @@
  */
 import {Component, OnInit, OnDestroy, ElementRef} from '@angular/core';
 import {ChatService} from "./chat.service";
+import {LoginService} from "../login/login.service";
+import {Router} from "@angular/router";
+import {Subscription} from "rxjs";
+import {isUndefined} from "util";
 
 @Component({
   selector: 'chat',
@@ -12,17 +16,20 @@ import {ChatService} from "./chat.service";
 })
 export class ChatComponent implements OnInit, OnDestroy{
   messages = [];
-  connectionMsgs;
-  connectionUsers;
-  message = '';
-  username = '';
+  connectionMsgs: Subscription;
+  connectionUsers: Subscription;
+  message: string;
+  username: string;
   users = [];
 
   title = 'ChatApp';
 
-  constructor(private chatService:ChatService, private ref:ElementRef) {
-
-  }
+  constructor(
+    private chatService:ChatService,
+    private ref:ElementRef,
+    private loginService: LoginService,
+    private router: Router
+  ) { }
 
   sendMessage(){
     if(/\S/.test(this.message)){
@@ -39,12 +46,23 @@ export class ChatComponent implements OnInit, OnDestroy{
     }
   }
 
-  registerUser(){
-    if(!this.loginValidation()){
-      this.ref.nativeElement.querySelector('#error-box').innerHTML = 'WRONG NICKNAME! (3-12 characters)';
-    } else {
-      console.log('registerUser() fired: hello ' + this.username);
-      this.ref.nativeElement.querySelector('#login-box').remove();
+  updateScroll(){
+    let element = this.ref.nativeElement.querySelector("#chat-box");
+    element.scrollTop = element.scrollHeight;
+  }
+
+  clearMessages(){
+    this.messages = [];
+    this.ref.nativeElement.querySelector('#message-form > input').focus();
+  }
+
+  ngOnInit() {
+    this.initChat();
+  }
+
+  private initChat() {
+    if(this.setUsername()){
+      console.log('Hello ' + this.username);
       this.ref.nativeElement.querySelector('#message-form > input').focus();
       this.chatService.initSocket();
       this.chatService.sendUsername(this.username);
@@ -59,28 +77,23 @@ export class ChatComponent implements OnInit, OnDestroy{
     }
   }
 
-  private loginValidation() {
-    if(this.username == '' || this.username.length < 3){
-      return false;
-    }
-    return true;
-  }
-
-  updateScroll(){
-    let element = this.ref.nativeElement.querySelector("#chat-box");
-    element.scrollTop = element.scrollHeight;
-  }
-
-  clearMessages(){
-    this.messages = [];
-    this.ref.nativeElement.querySelector('#message-form > input').focus();
-  }
-
-  ngOnInit() {
-  }
-
   ngOnDestroy() {
-    this.connectionMsgs.unsubscribe();
-    this.connectionUsers.unsubscribe();
+    if(!isUndefined(this.connectionUsers)){
+      this.connectionMsgs.unsubscribe();
+      this.connectionUsers.unsubscribe();
+    }
+  }
+
+  private setUsername(): boolean {
+    let username = this.loginService.username;
+    if (username == null){
+      this
+        .router
+        .navigate(['/login']);
+      return false;
+    } else {
+      this.username = username;
+      return true;
+    }
   }
 }

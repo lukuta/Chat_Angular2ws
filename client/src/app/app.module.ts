@@ -5,16 +5,24 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {ChatComponent} from "./chat/chat.component";
+import {AppRoutingModule} from "./app-routing.module";
+import {LoginService} from "./login/login.service";
+import {LoginComponent} from "./login/login.component";
 @NgModule({
   declarations: [
-    AppComponent,ChatComponent
+    AppComponent,
+    ChatComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
